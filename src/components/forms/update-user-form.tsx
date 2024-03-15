@@ -132,7 +132,7 @@ export default function UpdateUserForm() {
 
 
 
-                <Button disabled={createUser.isPending} className=" w-full" type="submit">
+                <Button disabled={createUser.isPending} variant="base" className=" w-full" type="submit">
                     {createUser.isPending && <Loader2 className="animate-spin h-4 w-4 mr-4" />}
                     Submit
                 </Button>
