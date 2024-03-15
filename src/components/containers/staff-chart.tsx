@@ -21,7 +21,7 @@ export default function StaffChart() {
 
 
     return (
-        <article className="border rounded-lg min-h-[300px] shadow-sm p-8">
+        <article className="border rounded-lg min-h-[300px] shadow p-8">
             <h3 className="text-xl">
                 Staff Distribution
             </h3>
