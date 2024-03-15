@@ -1,6 +1,6 @@
 export default function CustomError() {
     return (
-        <div className="w-full h-full flex items-center text-red-600 justify-center gap-4 flex-col">
+        <div className="w-full h-full max-h-[60vh] flex items-center text-red-600 justify-center gap-4 flex-col">
 
 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-[80px] h-[80px]">
