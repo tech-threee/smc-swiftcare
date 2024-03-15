@@ -1,4 +1,8 @@
 // All static and resuable data that will be mapped through will be stored in this folder and referenced from this file
+import { UserRes } from '@/types';
+import { faker } from '@faker-js/faker';
+import _ from "lodash"
+
 
 export const dashBoardIconsMap = {
     staff: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -23,3 +27,61 @@ export const dashBoardIconsMap = {
 
    
 };
+
+
+export const dummyStaff: UserRes[] = Array.from({ length: 20 }, () => ({
+    othernames: faker.person.firstName(),
+    surname: faker.person.firstName(),
+    email: _.toLower(faker.internet.email()),
+    _id: faker.database.mongodbObjectId(),
+    createdAt: faker.date.anytime(),
+    updatedAt: faker.date.anytime(),
+    isFirstLogin: faker.datatype.boolean(),
+    password: faker.internet.password(),
+    phone: faker.phone.number(),
+    role: "DOCTOR",
+    token: "some-string"
+}));
+
+export const dummyMessages = Array.from({ length: 20 }, () => ({
+    sender: {
+        othernames: faker.person.firstName(),
+        surname: faker.person.firstName(),
+        email: _.toLower(faker.internet.email()),
+        _id: faker.database.mongodbObjectId(),
+    },
+    reciepient: {
+        othernames: faker.person.firstName(),
+        surname: faker.person.firstName(),
+        email: _.toLower(faker.internet.email()),
+        _id: faker.database.mongodbObjectId(),
+    },
+    message: faker.lorem.paragraphs({
+        min: 1,
+        max: 5
+    }, '<br/>\n'),
+    title: _.toLower(faker.internet.email()),
+    _id: faker.database.mongodbObjectId(),
+    createdAt: faker.date.anytime(),
+    updatedAt: faker.date.anytime(),
+    read: faker.datatype.boolean(),
+    replies: Array.from({ length: 5 }, () => ({
+        sender: {
+            othernames: faker.person.firstName(),
+            surname: faker.person.firstName(),
+            email: _.toLower(faker.internet.email()),
+            _id: faker.database.mongodbObjectId(),
+        },
+        message: faker.lorem.sentences(2),
+        title: _.toLower(faker.internet.email()),
+        _id: faker.database.mongodbObjectId(),
+        createdAt: faker.date.anytime(),
+        updatedAt: faker.date.anytime(),
+        read: faker.datatype.boolean(),
+        replies: [],
+
+    })),
+   
+}));
+
+type Messages = typeof dummyMessages
