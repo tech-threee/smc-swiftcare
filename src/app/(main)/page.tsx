@@ -1,12 +1,11 @@
 import DashboardCard from "@/components/cards/dashboard-card";
 import StaffChart from "@/components/containers/staff-chart";
 import { dashBoardIconsMap } from "@/utils/client";
-import Image from "next/image";
 
 export default function Home() {
   
   return (
-    <main className="flex  flex-col items-center gap-16 px-2">
+    <main className="flex  flex-col items-center gap-10 px-2">
       <section className="grid gap-4  w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <DashboardCard
           label="Total Staff"
