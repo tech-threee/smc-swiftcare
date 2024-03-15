@@ -153,7 +153,7 @@ export default function CreateUserForm() {
 
 
 
-                <Button disabled={createUser.isPending} className=" w-full bg-primaryy" type="submit">
+                <Button disabled={createUser.isPending} className=" w-full " type="submit">
                     {createUser.isPending && <Loader2 className="animate-spin h-4 w-4 mr-4" />}
                     Submit
                 </Button>
