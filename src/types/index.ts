@@ -1,12 +1,6 @@
 import { actionTypes } from "@/context/reducer";
 import { AxiosResponse } from "axios";
 
-export type MongoResponse = {
-    _id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    __v?: number;
-}
 
 type ActionTypes = keyof typeof actionTypes
 
@@ -34,6 +28,13 @@ export type ForgotStoreType = {
     tab: "send-code" | "verify-code" | "reset-password";
     token?: string;
 };
+
+export type MongoResponse = {
+    _id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    __v?: number;
+}
 
 export type User = {
 

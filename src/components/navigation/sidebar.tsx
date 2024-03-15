@@ -63,7 +63,7 @@ const NAVLINKS: NavLink[] = [
     },
 ];
 
-export default function Sidebar() { 
+export default function Sidebar() {
     const [localUser, setLocalUser, removeLocalUser] = useLocalStorage<UserRes | null>("user", null);
     const canShowText = useMedia('(min-width: 1280px)', false);
 
