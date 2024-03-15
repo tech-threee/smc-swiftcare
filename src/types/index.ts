@@ -2,6 +2,8 @@ import { actionTypes } from "@/context/reducer";
 import { AxiosResponse } from "axios";
 
 
+
+
 type ActionTypes = keyof typeof actionTypes
 
 export type Action = {
@@ -36,8 +38,48 @@ export type MongoResponse = {
     __v?: number;
 }
 
-export type User = {
+export type CreateUserInput = {
+    othernames: string;
+    surname: string;
+    email: string;
+    phone: string;
+    // role: UserRoles
+};
 
+export type LoginUserInput = {
+    email: string;
+    password: string;
+};
+
+export type ChangePasswordInput = {
+    email: string;
+    oldPassword: string;
+    newPassword: string;
+};
+
+export type ResetPasswordInput = Pick<ChangePasswordInput, "newPassword"> & {
+    email: string;
+};
+
+export type SendCodeInput = Pick<LoginUserInput, "email">;
+
+export type VerifyCodeInput = SendCodeInput & {
+    code: string;
+};
+
+
+export type UpdateUserDetailsInput = Pick<User, "surname" | "othernames" | "phone">
+
+
+export type User = {
+    surname: string;
+    othernames: string;
+    email: string;
+    password: string;
+    role: any;
+    token: string;
+    phone: string;
+    isFirstLogin: boolean;
 };
 
 export type UserRes = User & MongoResponse
