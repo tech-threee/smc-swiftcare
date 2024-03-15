@@ -1,3 +1,4 @@
+"use client"
 import { ResponsivePie } from '@nivo/pie';
 import { FC } from 'react';
 

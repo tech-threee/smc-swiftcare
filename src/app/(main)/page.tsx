@@ -1,8 +1,10 @@
 import DashboardCard from "@/components/cards/dashboard-card";
+import { PieChart } from "@/components/charts";
 import { dashBoardIconsMap } from "@/utils/client";
 import Image from "next/image";
 
 export default function Home() {
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between px-2">
       <section className="grid gap-4  w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -26,6 +28,12 @@ export default function Home() {
           link="/blog"
 
         />
+      </section>
+      <section className="grid gap-4 grid-cols-2">
+        <PieChart
+          data={[]}
+        />
+
       </section>
     </main>
   );
