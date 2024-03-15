@@ -1,4 +1,5 @@
 import { actionTypes } from "@/context/reducer";
+import { rolesMap } from "@/utils/server/user";
 import { AxiosResponse } from "axios";
 
 
@@ -38,12 +39,14 @@ export type MongoResponse = {
     __v?: number;
 }
 
+export type UserRoles = keyof typeof rolesMap
+
 export type CreateUserInput = {
     othernames: string;
     surname: string;
     email: string;
     phone: string;
-    // role: UserRoles
+    role: UserRoles
 };
 
 export type LoginUserInput = {
@@ -66,6 +69,7 @@ export type SendCodeInput = Pick<LoginUserInput, "email">;
 export type VerifyCodeInput = SendCodeInput & {
     code: string;
 };
+
 
 
 export type UpdateUserDetailsInput = Pick<User, "surname" | "othernames" | "phone">
