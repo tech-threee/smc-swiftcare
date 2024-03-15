@@ -53,3 +53,6 @@ export default function StaffPage() {
             </div>
     );
 }
+
+// npx shadcn-ui@latest add tooltip dialog select dropdown-menu
+// Q8YQBD2FR2A
