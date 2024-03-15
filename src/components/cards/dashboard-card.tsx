@@ -9,7 +9,7 @@ type Props = {
 
 export default function DashboardCard({ icon, label, value, link }: Props) {
     return (
-        <article className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
+        <article className="relative overflow-hidden border rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
             <dt>
                 <div className="absolute rounded-md bg-core text-white p-3 ">
                     {icon}
