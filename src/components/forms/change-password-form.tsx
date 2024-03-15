@@ -122,7 +122,7 @@ export default function ChangePasswordForm() {
 
 
 
-                <Button disabled={createUser.isPending} className=" w-full " type="submit">
+                <Button disabled={createUser.isPending} className=" w-full " variant="base" type="submit">
                     {createUser.isPending && <Loader2 className="animate-spin h-4 w-4 mr-4" />}
                     Submit
                 </Button>
