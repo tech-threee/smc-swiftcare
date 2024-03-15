@@ -69,7 +69,7 @@ export const GET_USERS = async ( token: string) => {
         if (response.status === 200) {
             return response.data.data;
         } else {
-            throw new Error("oops");
+            return []
         }
     } catch (error) {
         throw error;
