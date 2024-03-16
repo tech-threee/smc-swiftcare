@@ -89,3 +89,15 @@ export type User = {
 export type UserRes = User & MongoResponse
 
 
+
+
+export type Message = {
+    sender: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>
+    reciepient: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>
+    message: string
+    read: boolean
+    title: string
+    replies: MessageRes[]
+};
+
+export type MessageRes = Message & MongoResponse
