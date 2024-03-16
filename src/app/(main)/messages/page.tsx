@@ -5,16 +5,18 @@ import {
     ResizablePanel,
     ResizablePanelGroup,
 } from "@/components/ui/resizable";
-
+import { useState } from "react";
 import CreateMessageDialog from "@/components/dialogs/create-message-dialog";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { dummyMessages } from "@/utils/client";
 import MessageCard from "@/components/cards/message-card";
 import MessageView from "@/components/containers/message-view";
+import { MessageRes } from "@/types";
 
 
 export default function MessagesPage() {
+    const [selectedMessage, setSelectedMessage] = useState<MessageRes | null>(null)
     return (
         <div className="h-full">
             <CreateMessageDialog />
@@ -33,6 +35,7 @@ export default function MessagesPage() {
                                 <MessageCard
                                     key={message._id}
                                     message={message}
+                                    setMessage={setSelectedMessage}
                                 />
                             ))
                         }
@@ -41,7 +44,7 @@ export default function MessagesPage() {
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={75}>
-                   <MessageView />
+                    <MessageView message={selectedMessage } />
                 </ResizablePanel>
             </ResizablePanelGroup>
         </div>

@@ -7,7 +7,7 @@ interface Props {
     letter: string;
 }
 export default function ViewOnlyRichText({ letter, }: Props) {
-    const editor = useEditor({
+    let editor = useEditor({
         extensions: [StarterKit.configure()],
         content: letter,
         editable: false,

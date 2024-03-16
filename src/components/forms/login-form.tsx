@@ -18,7 +18,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { LOGIN_USER } from "@/utils/server/auth";
 import { useLocalStorage, useSessionStorage } from 'react-use';
-import { ForgotStoreType, } from '@/types';
+import { ForgotStoreType, UserRes, } from '@/types';
 import Link from "next/link";
 
 
@@ -30,7 +30,7 @@ const formSchema = z.object({
 });
 
 export default function LoginForm() {
-    const [localUser, setLocalUser,] = useLocalStorage<any | null>("user", null);
+    const [localUser, setLocalUser,] = useLocalStorage<UserRes | null>("user", null);
     const [_forgotStore, setForgotStore] = useLocalStorage<ForgotStoreType>("forgot-store", { username: "", tab: "send-code", token: "" });
     const [viewPassword, setViewPassword] = useState(false);
 
@@ -48,8 +48,6 @@ export default function LoginForm() {
 
     const loginUser = useMutation({
         mutationFn: (values: z.infer<typeof formSchema>) => {
-            
-
             return LOGIN_USER(values);
         }
     });
@@ -57,9 +55,12 @@ export default function LoginForm() {
     function onSubmit(values: z.infer<typeof formSchema>) {
         const toastSubmitId = toast.loading("Logging in");
 
+        console.log(values)
+
         loginUser.mutate(values, {
             onSuccess: (data) => {
-                console.log(data);
+                
+                console.log({data});
 
                 toast.success(`Login Successful`, {
                     id: toastSubmitId
