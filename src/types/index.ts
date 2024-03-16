@@ -14,6 +14,7 @@ export type Action = {
 
 export type State = {
     user: any;
+    message: MessageRes
 };
 
 export type Children = {
