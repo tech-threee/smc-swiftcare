@@ -4,7 +4,8 @@ const userInfo = fetchUser();
 
 const initialState = {
     user: userInfo,
-    message: {}
+    message: {},
+    blog: {}
 };
 
 export default initialState;

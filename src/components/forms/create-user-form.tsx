@@ -1,14 +1,22 @@
 "use client";
 import { UserRes, UserRoles } from "@/types";
-import { CREATE_USER } from "@/utils/server/user";
+import { CREATE_USER, rolesMap } from "@/utils/server/user";
 import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
     FormField,
     FormItem,
+    FormLabel,
     FormMessage,
 } from "@/components/ui/form";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,6 +40,8 @@ const formSchema = z.object({
     othernames: z.string().min(3, "Othername should be more than 3 characters"),
     surname: z.string().min(3, "Surname should be more than 3 characters"),
     phone: z.string().regex(phoneRegex, 'Invalid Number!'),
+    sid: z.string().min(2),
+    role: z.string()
 });
 export default function CreateUserForm() {
     const [localUser, setLocalUser,] = useLocalStorage<UserRes | null>("user", null);
@@ -43,7 +53,9 @@ export default function CreateUserForm() {
             email: "",
             othernames: "",
             surname: "",
-            phone: ""
+            phone: "",
+            sid: "",
+            role: ""
         },
     });
 
@@ -145,6 +157,43 @@ export default function CreateUserForm() {
                             <FormControl>
                                 <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Phone Number" {...field} />
                             </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="sid"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormControl>
+                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Phone Number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="role"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Role</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a role" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                   
+                                    <SelectItem value="DOCTOR">DOCTOR</SelectItem>
+                                    <SelectItem value="IT">IT</SelectItem>
+                                    <SelectItem value="PHARMACIST">PHARMACIST</SelectItem>
+                                    <SelectItem value="NURSE">NURSE</SelectItem>
+                                </SelectContent>
+                            </Select>
+                           
                             <FormMessage />
                         </FormItem>
                     )}

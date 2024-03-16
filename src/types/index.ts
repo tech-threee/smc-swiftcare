@@ -5,7 +5,7 @@ import { AxiosResponse } from "axios";
 
 
 
-type ActionTypes = keyof typeof actionTypes
+type ActionTypes = keyof typeof actionTypes;
 
 export type Action = {
     type: ActionTypes;
@@ -14,12 +14,12 @@ export type Action = {
 
 export type State = {
     user: any;
-    message: MessageRes
+    message: MessageRes;
 };
 
 export type Children = {
-    children: React.ReactNode
-}
+    children: React.ReactNode;
+};
 
 export type ApiResponse<T> = AxiosResponse<{
     success: boolean;
@@ -38,16 +38,16 @@ export type MongoResponse = {
     createdAt: Date;
     updatedAt: Date;
     __v?: number;
-}
+};
 
-export type UserRoles = keyof typeof rolesMap
+export type UserRoles = keyof typeof rolesMap;
 
 export type CreateUserInput = {
     othernames: string;
     surname: string;
     email: string;
     phone: string;
-    role: UserRoles
+    role: UserRoles;
 };
 
 export type LoginUserInput = {
@@ -73,32 +73,33 @@ export type VerifyCodeInput = SendCodeInput & {
 
 
 
-export type UpdateUserDetailsInput = Pick<User, "surname" | "othernames" | "phone">
+export type UpdateUserDetailsInput = Pick<User, "surname" | "othernames" | "phone">;
 
 
 export type User = {
     surname: string;
     othernames: string;
     email: string;
-    password: string;
+    sid: string;
+    pin: string;
     role: any;
     token: string;
     phone: string;
     isFirstLogin: boolean;
 };
 
-export type UserRes = User & MongoResponse
+export type UserRes = User & MongoResponse;
 
 
 
 
 export type Message = {
-    sender: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>
-    reciepient: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>
-    message: string
-    read: boolean
-    title: string
-    replies: MessageRes[]
+    sender: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>;
+    reciepient: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>;
+    message: string;
+    read: boolean;
+    title: string;
+    replies: MessageRes[];
 };
 
-export type MessageRes = Message & MongoResponse
+export type MessageRes = Message & MongoResponse;

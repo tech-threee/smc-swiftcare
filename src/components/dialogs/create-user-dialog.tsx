@@ -14,8 +14,8 @@ export default function CreateUserDialog() {
     return (
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button className="ml-auto">
-                        New User
+                    <Button className="ml-auto absolute top-10 right-10">
+                        Create New User
                     </Button>
 
                 </DialogTrigger>
