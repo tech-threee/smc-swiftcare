@@ -10,6 +10,7 @@ import CustomLoader from "@/components/loaders/custom-loader";
 import { GET_USERS } from "@/utils/server/user";
 import CustomError from "@/components/core/custom-error";
 import CreateUserDialog from "@/components/dialogs/create-user-dialog";
+import { dummyStaff } from "@/utils/client";
 
 export default function StaffPage() {
     const [user, setUser] = useLocalStorage<UserRes | null>("user", null);
@@ -19,6 +20,8 @@ export default function StaffPage() {
             if (user && user.token) {
                 const staff = await GET_USERS(user.token);
                 return staff;
+            } else {
+                return []
             }
 
         },
@@ -47,7 +50,7 @@ export default function StaffPage() {
                             <DataTable
                                 filterableCol="email"
                                 columns={userColumns}
-                                data={data} title="staff" />
+                            data={dummyStaff} title="staff" />
                     }
                 </>
             </div>
