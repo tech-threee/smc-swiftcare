@@ -6,17 +6,13 @@ type MessageInput = {
     message: string
 }
 
-type StaffGroupMessageInput = MessageInput & {
-    role: UserRoles
-}
-
 type IndividualMessageInput = MessageInput & {
     email: string
 }
 
-export const SEND_TO_ALL_USERS = async (info: LoginUserInput) => {
+export const SEND_TO_ALL_USERS = async (info: MessageInput) => {
     try {
-        const response: ApiResponse<null> = await Axios({
+        const response: ApiResponse<[]> = await Axios({
             method: "POST",
             url: `/communication/`,
             data: info
@@ -32,9 +28,9 @@ export const SEND_TO_ALL_USERS = async (info: LoginUserInput) => {
     }
 };
 
-export const SEND_TO_ALL_STAFF = async (info: LoginUserInput) => {
+export const SEND_TO_ALL_STAFF = async (info: MessageInput) => {
     try {
-        const response: ApiResponse<null> = await Axios({
+        const response: ApiResponse<[]> = await Axios({
             method: "POST",
             url: `/communication/staff`,
             data: info
@@ -50,9 +46,9 @@ export const SEND_TO_ALL_STAFF = async (info: LoginUserInput) => {
     }
 };
 
-export const SEND_TO_ALL_PATIENTS = async (info: LoginUserInput) => {
+export const SEND_TO_ALL_PATIENTS = async (info: MessageInput) => {
     try {
-        const response: ApiResponse<null> = await Axios({
+        const response: ApiResponse<[]> = await Axios({
             method: "POST",
             url: `/communication/patients`,
             data: info
@@ -68,9 +64,9 @@ export const SEND_TO_ALL_PATIENTS = async (info: LoginUserInput) => {
     }
 };
 
-export const SEND_TO_INDIVIDUAL = async (info: LoginUserInput) => {
+export const SEND_TO_INDIVIDUAL = async (info: IndividualMessageInput) => {
     try {
-        const response: ApiResponse<null> = await Axios({
+        const response: ApiResponse<[]> = await Axios({
             method: "POST",
             url: `/communication/individual`,
             data: info
@@ -86,11 +82,11 @@ export const SEND_TO_INDIVIDUAL = async (info: LoginUserInput) => {
     }
 };
 
-export const SEND_TO_STAFF_GROUP = async (info: LoginUserInput) => {
+export const SEND_TO_STAFF_GROUP = async (info: MessageInput, role: UserRoles) => {
     try {
-        const response: ApiResponse<null> = await Axios({
+        const response: ApiResponse<[]> = await Axios({
             method: "POST",
-            url: `/communication/staff?type=${info}`,
+            url: `/communication/staff?type=${role.toLowerCase()}`,
             data: info
         });
 
