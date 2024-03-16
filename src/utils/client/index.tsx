@@ -1,5 +1,5 @@
 // All static and resuable data that will be mapped through will be stored in this folder and referenced from this file
-import { UserRes } from '@/types';
+import { MessageRes, UserRes } from '@/types';
 import { faker } from '@faker-js/faker';
 import _ from "lodash"
 
@@ -43,7 +43,7 @@ export const dummyStaff: UserRes[] = Array.from({ length: 20 }, () => ({
     token: "some-string"
 }));
 
-export const dummyMessages = Array.from({ length: 20 }, () => ({
+export const dummyMessages: MessageRes[] = Array.from({ length: 20 }, () => ({
     sender: {
         othernames: faker.person.firstName(),
         surname: faker.person.firstName(),
@@ -60,7 +60,7 @@ export const dummyMessages = Array.from({ length: 20 }, () => ({
         min: 1,
         max: 5
     }, '<br/>\n'),
-    title: _.toLower(faker.internet.email()),
+    title: faker.lorem.words({min: 2, max: 7}),
     _id: faker.database.mongodbObjectId(),
     createdAt: faker.date.anytime(),
     updatedAt: faker.date.anytime(),
@@ -72,8 +72,14 @@ export const dummyMessages = Array.from({ length: 20 }, () => ({
             email: _.toLower(faker.internet.email()),
             _id: faker.database.mongodbObjectId(),
         },
+        reciepient: {
+            othernames: faker.person.firstName(),
+            surname: faker.person.firstName(),
+            email: _.toLower(faker.internet.email()),
+            _id: faker.database.mongodbObjectId(),
+        },
         message: faker.lorem.sentences(2),
-        title: _.toLower(faker.internet.email()),
+        title: faker.lorem.words({ min: 2, max: 7 }),
         _id: faker.database.mongodbObjectId(),
         createdAt: faker.date.anytime(),
         updatedAt: faker.date.anytime(),
@@ -84,4 +90,4 @@ export const dummyMessages = Array.from({ length: 20 }, () => ({
    
 }));
 
-type Messages = typeof dummyMessages
+
