@@ -37,10 +37,11 @@ export const dummyStaff: UserRes[] = Array.from({ length: 20 }, () => ({
     createdAt: faker.date.anytime(),
     updatedAt: faker.date.anytime(),
     isFirstLogin: faker.datatype.boolean(),
-    password: faker.internet.password(),
+    pin: faker.internet.password(),
     phone: faker.phone.number(),
     role: "DOCTOR",
-    token: "some-string"
+    token: "some-string",
+    sid: faker.database.mongodbObjectId(),
 }));
 
 export const dummyMessages: MessageRes[] = Array.from({ length: 20 }, () => ({

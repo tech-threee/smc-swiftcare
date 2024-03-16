@@ -167,7 +167,7 @@ export default function CreateUserForm() {
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Phone Number" {...field} />
+                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Staff ID" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

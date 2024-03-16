@@ -44,7 +44,7 @@ export default function CreateMessageForm() {
     });
 
     const createMessage = useMutation({
-        mutationFn: (values: z.infer<typeof formSchema>) => {
+        mutationFn: (values: z.infer<typeof formSchema>): any => {
             if (!localUser || !localUser?.token) {
                 throw new Error("Please login again");
             }
