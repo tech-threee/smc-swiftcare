@@ -180,6 +180,7 @@ export default function CreateUserForm() {
                                 </FormControl>
                                 <SelectContent>
 
+                                    <SelectItem value="SUDO">SUDO</SelectItem>
                                     <SelectItem value="DOCTOR">DOCTOR</SelectItem>
                                     <SelectItem value="IT">IT</SelectItem>
                                     <SelectItem value="PHARMACIST">PHARMACIST</SelectItem>
