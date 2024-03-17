@@ -1,5 +1,6 @@
-import { ApiResponse, UserRes  } from "@/types";
-import Axios from "../axios"
+import { ApiResponse, UserRes } from "@/types";
+import Axios from "../axios";
+import axios from "axios";
 
 
 type LoginUserInput = {
@@ -18,7 +19,7 @@ type ResetPasswordInput = Pick<ChangePasswordInput, "newPassword"> & {
 };
 
 type SendCodeInput = {
-    email: string
+    email: string;
 };
 
 type VerifyCodeInput = SendCodeInput & {
@@ -35,7 +36,12 @@ export const LOGIN_USER = async (info: LoginUserInput) => {
         });
 
         if (response.data.success) {
-            if (response.data.data.role === "IT")  return response.data.data;
+            if (response.data.data.role === "IT") {
+                if (!!response.data.data.token) {
+                    axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.data.token}`;
+                }
+                return response.data.data;
+            }
         } else {
             throw new Error("oops");
         }

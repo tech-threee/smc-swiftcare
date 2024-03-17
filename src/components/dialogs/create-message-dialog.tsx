@@ -12,14 +12,14 @@ import { Button } from "../ui/button";
 
 export default function CreateMessageDialog() {
     return (
-        <Dialog>
+        <Dialog >
             <DialogTrigger asChild>
                 <Button className="ml-auto absolute top-10 right-10">
                     Create New Message
                 </Button>
 
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="w-full max-w-7xl">
                 <DialogHeader>
                     <DialogTitle>Create New Message </DialogTitle>
                 </DialogHeader>
