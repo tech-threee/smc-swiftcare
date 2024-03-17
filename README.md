@@ -1,11 +1,12 @@
 # Setup Management Console
-This repository contains the console for the Information Technology staff/department of the hospital like the Chief Technical officer , system support specialists and so on. This console is primarily for creating staff under the authorization of the users of the Sudo Management Console,
+This repository contains the console for the Information Technology staff/department of the hospital like the Chief Technical officer , system support specialists and so on. This console is primarily for creating staff under the authorization of the users of the [Sudo Management Console](https://github.com/tech-threee/sudo-swiftcare), communicating with other users of the application, sending relevant announcements, creating blog posts and health tips.
 
 
 NB: For the first release of this software, the features currently available are
 - Viewing employees
 - Viewing patient details
 - Account authentication and management
+
 
 ## How To Access
 The software is hosted using Netlify using [this url](https://smc-swiftcare.netlify.app)
@@ -21,9 +22,9 @@ The software is hosted using Netlify using [this url](https://smc-swiftcare.netl
 
 4. The can visit the staff page to view details about the staff of the hospital
 
-5. They can also visit the patients page to view relevant information about the patients that have registered onto the system
+5. They can also visit the blog page to view previous blogs and create new blogs
 
-The long-term goal of the software is to include features to allow the user view the leave schedules of emplyees, viewsystem generated reports and view relevant invoices made using the system for further enhance their management.
+The long-term goal of the software is to include features to allow the users manafe hospital website content, perform system checks across other consoles, provide technical support to other users and other relevant system support functionalities.
 
 
 ## Stack
@@ -33,4 +34,4 @@ This software was built using
 3. [Shadcn UI](https://ui.shadcn.com/)
 
 ## Design System
-Because this system is part of a software suite (SwiftCare Connec+), it shares the same design and components as the other consoles of the software suite however, the only different is that the primary color is purple - `#9C27B0`
+Because this system is part of a software suite (SwiftCare Connec+), it shares the same design and components as the other consoles of the software suite however, the only different is that the primary color is green - `#4CAF50`
