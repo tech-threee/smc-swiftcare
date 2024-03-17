@@ -52,6 +52,7 @@ export default function CreateMessageForm() {
 
     const handleOptionChange = (event: any) => {
         setSelectedAudience(event.target.value);
+        console.log(event)
     };
 
 
@@ -129,9 +130,10 @@ export default function CreateMessageForm() {
                         <h4>
                             Choose Target Audience
                         </h4>
-                        <RadioGroup value={selectedAudience}
-                            onChange={handleOptionChange}
- className="flex items-center justify-b gap-8" defaultValue="staff">
+                        <RadioGroup
+                            value={selectedAudience}
+                            onChange={(e: any) => handleOptionChange(e)}
+                            className="flex items-center justify-b gap-8" >
                             <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="staff" id="staff" />
                                 <Label htmlFor="staff">Staff</Label>
