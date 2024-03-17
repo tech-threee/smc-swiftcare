@@ -54,7 +54,7 @@ export const RESET_PASSWORD = async (info: ResetPasswordInput) => {
     try {
         const response: ApiResponse<UserRes> = await Axios({
             method: "POST",
-            url: `/auth/manager/reset-password`,
+            url: `/auth/reset-password`,
             data: info
         });
 
@@ -72,7 +72,7 @@ export const SEND_VERIFICATION_CODE = async (info: SendCodeInput) => {
     try {
         const response: ApiResponse<UserRes> = await Axios({
             method: "POST",
-            url: `/auth/manager/send-code`,
+            url: `/auth/send-code`,
             data: info
         });
 
@@ -90,7 +90,7 @@ export const VERIFY_CODE = async (info: VerifyCodeInput) => {
     try {
         const response: ApiResponse<UserRes> = await Axios({
             method: "POST",
-            url: `/auth/manager/verify-code`,
+            url: `/auth/verify-code`,
             data: info
         });
 

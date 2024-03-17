@@ -2,7 +2,11 @@ import { ApiResponse, ChangePasswordInput, LoginUserInput, ResetPasswordInput, S
 import Axios from "../axios";
 import _ from "lodash"
 
-type CreateUserInput = Pick<User, "email" | "othernames" | "surname" | "phone">
+
+type CreateUserInput = Pick<User, "email" | "dob" | "phone" | "name"> & {
+    role: string
+}
+
 
 export const rolesMap = {
     "IT": "it",
@@ -24,10 +28,10 @@ export const CREATE_USER = async (info: CreateUserInput,  token: string) => {
             }
         });
 
-        if (response.status === 200 || response.status === 201) {
+        if (response.data?.success) {
             return response.data.data;
         } else {
-            throw new Error("oops");
+            throw new Error(response?.data?.message);
         }
     } catch (error) {
         throw error;

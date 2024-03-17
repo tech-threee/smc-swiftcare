@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {toast} from "sonner";
+import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useLocalStorage } from "react-use";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -37,10 +37,9 @@ const formSchema = z.object({
     }).min(10, {
         message: "Please enter more than 10 characters"
     }),
-    othernames: z.string().min(3, "Othername should be more than 3 characters"),
-    surname: z.string().min(3, "Surname should be more than 3 characters"),
+    name: z.string().min(3, "Othername should be more than 3 characters"),
     phone: z.string().regex(phoneRegex, 'Invalid Number!'),
-    sid: z.string().min(2),
+    dob: z.string(),
     role: z.string()
 });
 export default function CreateUserForm() {
@@ -51,11 +50,10 @@ export default function CreateUserForm() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
-            othernames: "",
-            surname: "",
+            name: "",
             phone: "",
-            sid: "",
-            role: ""
+            role: "",
+            dob: "",
         },
     });
 
@@ -67,15 +65,19 @@ export default function CreateUserForm() {
             return CREATE_USER(values, localUser.token);
         },
         onSuccess: (newData) => {
-            queryClient.setQueryData([`staff`], (oldData: UserRes[]) => {
-                return [...oldData, newData];
-            });
-            location.reload();
+            console.log(newData)
+            // queryClient.setQueryData([`staff`], (oldData: UserRes[]) => {
+            //     if (oldData?.length <= 0) {
+            //         return;
+            //     }
+            //     return [...oldData, newData];
+            // });
+            // location.reload();
 
             // toast.success("Created User successfully")
-            if (typeof window !== "undefined") {
-                location.reload();
-            }
+            // if (typeof window !== "undefined") {
+            //     location.reload();
+            // }
         },
     });
 
@@ -86,21 +88,21 @@ export default function CreateUserForm() {
             onSuccess: (data) => {
                 console.log(data);
 
-                toast.success(`Login Successful`, {
+                toast.success(`User Creation Successful`, {
                     id: toastSubmitId
                 });
 
-                location.reload();
+                // location.reload();
 
-                if (typeof window !== "undefined") {
-                    location.reload();
-                }
+                // if (typeof window !== "undefined") {
+                //     location.reload();
+                // }
             },
             onError: (error: any) => {
-                toast.error(error?.response?.data?.message || "Couldn't create user", {
+                toast.error(error?.response?.data?.message || error?.message || "Couldn't create user", {
                     id: toastSubmitId
                 });
-                console.log(error);
+                console.log({error});
 
             }
 
@@ -115,28 +117,17 @@ export default function CreateUserForm() {
 
                 <FormField
                     control={form.control}
-                    name="surname"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Surname" {...field} />
+                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Full Name" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <FormField
-                    control={form.control}
-                    name="othernames"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormControl>
-                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Othernames" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+
                 <FormField
                     control={form.control}
                     name="email"
@@ -144,6 +135,19 @@ export default function CreateUserForm() {
                         <FormItem>
                             <FormControl>
                                 <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Email" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="dob"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Date of birth</FormLabel>
+                            <FormControl>
+                                <Input type="date" className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Date of birth" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -161,18 +165,7 @@ export default function CreateUserForm() {
                         </FormItem>
                     )}
                 />
-                <FormField
-                    control={form.control}
-                    name="sid"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormControl>
-                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Staff ID" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+
                 <FormField
                     control={form.control}
                     name="role"
@@ -186,14 +179,14 @@ export default function CreateUserForm() {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                   
+
                                     <SelectItem value="DOCTOR">DOCTOR</SelectItem>
                                     <SelectItem value="IT">IT</SelectItem>
                                     <SelectItem value="PHARMACIST">PHARMACIST</SelectItem>
                                     <SelectItem value="NURSE">NURSE</SelectItem>
                                 </SelectContent>
                             </Select>
-                           
+
                             <FormMessage />
                         </FormItem>
                     )}
