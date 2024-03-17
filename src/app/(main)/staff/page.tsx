@@ -50,7 +50,7 @@ export default function StaffPage() {
                             <DataTable
                                 filterableCol="email"
                                 columns={userColumns}
-                            data={dummyStaff} title="staff" />
+                            data={data || []} title="staff" />
                     }
                 </>
             </div>

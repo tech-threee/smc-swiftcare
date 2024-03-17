@@ -1,4 +1,4 @@
-import { ApiResponse, ChangePasswordInput, LoginUserInput, ResetPasswordInput, SendCodeInput, UpdateUserDetailsInput, User, UserRes, UserRoles, VerifyCodeInput } from "@/types"
+import { ApiResponse, ChangePasswordInput, LoginUserInput, Pagination, ResetPasswordInput, SendCodeInput, UpdateUserDetailsInput, User, UserRes, UserRoles, VerifyCodeInput } from "@/types"
 import Axios from "../axios";
 import _ from "lodash"
 
@@ -62,7 +62,10 @@ export const GET_USER_BY_ID = async (id: string, role: UserRoles, token: string)
 export const GET_USERS = async ( token: string) => {
 
     try {
-        const response: ApiResponse<UserRes[]> = await Axios({
+        const response: ApiResponse<{
+            pagination: Pagination
+            staff: UserRes[]
+        }> = await Axios({
             method: "GET",
             url: `/staff/`,
             headers: {
@@ -70,8 +73,9 @@ export const GET_USERS = async ( token: string) => {
             }
         });
 
-        if (response.status === 200) {
-            return response.data.data;
+        if (response.data.success) {
+            console.log(response.data.data)
+            return response.data.data?.staff;
         } else {
             return []
         }
